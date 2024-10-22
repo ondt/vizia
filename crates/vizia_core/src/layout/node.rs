@@ -286,12 +286,7 @@ impl Node for Entity {
                                 }
 
                                 Some(ImageOrSvg::Svg(svg)) => {
-                                    max_width = max_width.max(
-                                        svg.inner().fContainerSize.fWidth * store.scale_factor(),
-                                    );
-                                    max_height = max_height.max(
-                                        svg.inner().fContainerSize.fWidth * store.scale_factor(),
-                                    );
+                                    unimplemented!()
                                 }
 
                                 _ => {}

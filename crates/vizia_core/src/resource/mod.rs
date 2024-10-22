@@ -14,7 +14,7 @@ use hashbrown::{HashMap, HashSet};
 use unic_langid::LanguageIdentifier;
 
 pub(crate) enum ImageOrSvg {
-    Svg(skia_safe::svg::Dom),
+    Svg(()),
     Image(skia_safe::Image),
 }
 

@@ -21,7 +21,7 @@ vizia_window.workspace = true
 vizia_style.workspace = true
 accesskit = "0.16"
 
-skia-safe = { version = "0.75", features = ["textlayout", "svg"] }
+skia-safe = { version = "0.75", features = ["textlayout"] }
 # morphorm = {path = "../../../morphorm" }
 morphorm = {git = "https://github.com/vizia/morphorm.git", branch = "auto-min-size2"}
 # morphorm = "0.6.4"

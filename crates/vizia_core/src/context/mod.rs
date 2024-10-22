@@ -609,7 +609,7 @@ impl Context {
     /// `duration` - An optional duration for the timer. Pass `None` for a continuos timer.
     /// `callback` - A callback which is called on when the timer is started, ticks, and stops. Disambiguated by the `TimerAction` parameter of the callback.
     ///
-    /// Returns a `Timer` id which can be used to start and stop the timer.  
+    /// Returns a `Timer` id which can be used to start and stop the timer.
     ///
     /// # Example
     /// Creates a timer which calls the provided callback every second for 5 seconds:
@@ -622,7 +622,7 @@ impl Context {
     ///         TimerAction::Start => {
     ///             debug!("Start timer");
     ///         }
-    ///     
+    ///
     ///         TimerAction::Tick(delta) => {
     ///             debug!("Tick timer: {:?}", delta);
     ///         }
@@ -794,35 +794,7 @@ impl Context {
     }
 
     pub fn load_svg(&mut self, path: &str, data: &[u8], policy: ImageRetentionPolicy) -> ImageId {
-        let id = if let Some(image_id) = self.resource_manager.image_ids.get(path) {
-            return *image_id;
-        } else {
-            let id = self.resource_manager.image_id_manager.create();
-            self.resource_manager.image_ids.insert(path.to_owned(), id);
-            id
-        };
-
-        if let Ok(svg) = svg::Dom::from_bytes(data, &self.text_context.default_font_manager) {
-            match self.resource_manager.images.entry(id) {
-                Entry::Occupied(mut occ) => {
-                    occ.get_mut().image = ImageOrSvg::Svg(svg);
-                    occ.get_mut().dirty = true;
-                    occ.get_mut().retention_policy = policy;
-                }
-                Entry::Vacant(vac) => {
-                    vac.insert(StoredImage {
-                        image: ImageOrSvg::Svg(svg),
-                        retention_policy: policy,
-                        used: true,
-                        dirty: false,
-                        observers: HashSet::new(),
-                    });
-                }
-            }
-            self.style.needs_relayout();
-        }
-
-        id
+		unimplemented!()
     }
 
     pub fn spawn<F>(&self, target: F)
@@ -1015,7 +987,7 @@ pub trait EmitContext {
     /// # use instant::{Instant, Duration};
     /// # let cx = &mut Context::default();
     /// # enum AppEvent {Increment}
-    /// cx.schedule_emit_custom(    
+    /// cx.schedule_emit_custom(
     ///     Event::new(AppEvent::Increment)
     ///         .target(Entity::root())
     ///         .origin(cx.current())
